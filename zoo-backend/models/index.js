@@ -1,0 +1,25 @@
+var dbConfig = require("../config/db.config.js");
+
+var Sequelize = require("sequelize");
+var sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
+	host: dbConfig.HOST,
+	dialect: dbConfig.dialect,
+	operatorsAliases: false,
+
+	pool: {
+		max: dbConfig.pool.max,
+		min: dbConfig.pool.min,
+		acquire: dbConfig.pool.acquire,
+		idle: dbConfig.pool.idle
+	}
+});
+
+var db = {};
+
+db.Sequelize = Sequelize;
+db.sequelize = sequelize;
+
+//Need all db tables required here
+db.testing = require("./test.model.js")(sequelize, Sequelize);
+
+module.exports = db;
