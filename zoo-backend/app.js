@@ -13,12 +13,13 @@ var testAPIRouter = require("./routes/testAPI");
 var app = express();
 
 var corsOptions = {
-	origin: "http://localhost:8081"
+	origin: "http://localhost:8080"
 };
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
 
 app.use(cors(corsOptions));
 app.use(logger('dev'));
@@ -29,14 +30,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+/*
 var db = require("./models");
 db.sequelize.sync({ force: true }).then(() => {
 	console.log("Drop and re-sync db.");
 });
+*/
 
 // For setting individual page routes
 //app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/', usersRouter);
 app.use("/testAPI", testAPIRouter);
 
 app.get("/", (req, res) => {
