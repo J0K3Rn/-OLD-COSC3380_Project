@@ -114,10 +114,10 @@ export default class AnimalForm extends React.Component{
         else if(this.state.AttractionName.length === 0)
             alert("Must put attractionName")
         else{//all fields are valid
-            var values = "VALUES('" + this.state.Name + "', '" + this.state.ID + "', '" + this.state.Breed + "', STR_TO_DATE( '" + this.state.ArrivalDate + "','%M %d,%Y'), '" + this.state.Species + "' , " + this.state.Diet + ", " + this.state.sex + ", STR_TO_DATE('January 01, 1111','%M %d,%Y'), STR_TO_DATE('" + this.state.DOB + "','%M %d,%Y'), '" + this.state.CarerID + "', " + this.state.AttractionName + "', " + this.state.CarerID + ");"
+            var values = " VALUES('" + this.state.Name + "', " + this.state.ID + ", '" + this.state.Breed + "', STR_TO_DATE('" + this.state.ArrivalDate + "','%M %d,%Y'), '" + this.state.Species + "' , '" + this.state.Diet + "', '" + this.state.Sex + "', STR_TO_DATE('January 01, 1111','%M %d,%Y'), STR_TO_DATE('" + this.state.DOB + "','%M %d,%Y'), " + this.state.CarerID + ", '" + this.state.AttractionName + "', " + this.state.CarerID + ");"
             var data = "INSERT INTO animal (Name, ID, Breed, ArrivalDate, Species, Diet, Sex, DeceasedDate, DOB, CarerID, Attraction_Name, Employee_ID)"  + values
             //data is the query statement
-            // this function is located in file "/services/service.js" and is what calls the backend, the .then tells this program to wait for that function to return something
+            // this function is located in file "/services/service.js" and is what calls the backend, the .then specifies this program to wait for that function to return something
             DataService.createAnimal(data)
                 .then(response => {
 
@@ -126,7 +126,6 @@ export default class AnimalForm extends React.Component{
                     console.log(e);
                 });
         }
-           
     }
 
     render(){
