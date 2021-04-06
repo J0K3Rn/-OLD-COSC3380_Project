@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import AnimalForm from './pages/AnimalForm'
+import {Switch, Route, Link} from "react-router-dom"
+import "bootstrap/dist/css/bootstrap.min.css"
 import './App.css';
+
+import AnimalForm from './pages/AnimalForm'
 
 class App extends Component {
   constructor(props) {
@@ -20,11 +23,24 @@ class App extends Component {
 
   render() {
 	  return (
-	    <div className="App">
-	      <header className="App-header">
-			<AnimalForm></AnimalForm>
-	      </header>
-	    </div>
+		<div>
+			<nav className="navbar navbar-expand navbar-dark bg-dark">
+			<div className="navbar-nav mr-auto">
+				<li className="nav-item">
+				<Link to={"/AnimalForm"} className="nav-link">
+					AnimalForm
+				</Link>
+				</li>
+			</div>
+			</nav>
+			<div className="App">
+			<header className="App-header">
+				<Switch>
+					<Route exact path="/AnimalForm" component={AnimalForm}></Route>
+				</Switch>
+			</header>
+			</div>
+		</div>
 	  );
   }
 }

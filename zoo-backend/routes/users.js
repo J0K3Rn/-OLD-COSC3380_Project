@@ -1,9 +1,7 @@
-var express = require('express');
-var router = express.Router();
+const controller = require("../controllers/test.controller");
+const router = require("express").Router()
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+//this calls the function createanimal in file test.controller.js
+router.post("/api/CreateAnimal", controller.createanimal)
 
 module.exports = router;

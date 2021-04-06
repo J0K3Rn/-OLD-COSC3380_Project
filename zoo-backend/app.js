@@ -6,21 +6,18 @@ var logger = require('morgan');
 var cors = require("cors");
 var bodyParser = require("body-parser");
 
-var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var testAPIRouter = require("./routes/testAPI");
 
 var app = express();
 
 var corsOptions = {
-	origin: "http://localhost:8081"
+	origin: "http://localhost:8080"
 };
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
 
-app.use(cors(corsOptions));
+
+app.use(cors());
 app.use(logger('dev'));
 //app.use(express.json());
 //app.use(express.urlencoded({ extended: false }));
@@ -29,19 +26,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+/*
 var db = require("./models");
 db.sequelize.sync({ force: true }).then(() => {
 	console.log("Drop and re-sync db.");
 });
+*/
 
 // For setting individual page routes
 //app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use("/testAPI", testAPIRouter);
-
-app.get("/", (req, res) => {
-	res.json({ message: "Welcome to the application." });
-});
+app.use('/', usersRouter);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
