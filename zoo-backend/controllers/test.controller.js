@@ -21,12 +21,20 @@ exports.createanimal = (req, res) => {
         console.log(query)
         //this is what is sent to database, whatever is returned is put into result
         connection.query(query, function(err, result, fields){
-            if (err) throw err;
-            console.log("Insert was successful")
-            //this is what gets sent to the front end
-            res.status(200).send({
-                message: "Insert was successful"
-            })
+            if (err){
+                console.log(err)
+                res.status(400).send({
+                    message: ""
+                })
+            }
+            else{
+                console.log("Insert was successful")
+                //this is what gets sent to the front end
+                res.status(200).send({
+                    data: result,
+                    message: "Query was successful"
+                })
+            }
         })
         connection.release();
     })
