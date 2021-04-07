@@ -120,7 +120,7 @@ export default class AnimalForm extends React.Component{
             // this function is located in file "/services/service.js" and is what calls the backend, the .then specifies this program to wait for that function to return something
             DataService.createAnimal(data)
                 .then(response => {
-
+                    alert(response.data.message)
                 })
                 .catch(e => {
                     console.log(e);
