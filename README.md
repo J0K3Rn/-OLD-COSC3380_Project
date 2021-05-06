@@ -1,5 +1,7 @@
 # COSC3380_Project
 
+<b>THIS IS A OLD VERSION OF OUR PROJECT. THE LATEST VERSION CAN BE FOUND HERE: https://github.com/korynguyen/Team4ZooWebsiteDB</b>
+
 This is our database project for DataBases class. It is a similation of a zoo database
 
 Frontend is done in React. Port 3000
